@@ -1,5 +1,11 @@
 # flent-docker
-Dockerized flent app for RRUL Network test
+Dockerized flent app for Realtime Response Under Load Network Test
+
+If you have doubts about dockerizing flent due to its impact on results. Please compare below results.
+Both were done with same source and destination hosts. Only difference is dockerized version of flent.
+![](images/RRUL_docker.png)
+![](images/RRUL_native.png)
+
 
 ## Setup
 

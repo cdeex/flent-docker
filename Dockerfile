@@ -6,5 +6,6 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /data
 WORKDIR /data
 
-CMD tail -f /dev/null
+ENTRYPOINT ["/usr/bin/flent"]
+CMD ["rrul", "-p", "all_scaled", "-l", "60", "-H", "netperf-eu.bufferbloat.net", "-o", "/data/RRUL_Test.png", "--figure-width=20", "--figure-height=15", "-z"]
 

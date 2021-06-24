@@ -12,55 +12,46 @@ Example:
 $ docker  build -t flent -f Dockerfile .
 ```
 
-
-### Running container
-```sh
-docker 	run \
-	-it \
-	--entrypoint /bin/bash \
-	--volume=<path_to_local_disk>:/data \
-	--name <name_of_container> \
-	<name_of_image>
-```
-Example:
-```sh
-docker 	run \
-	-it \
-	--entrypoint /bin/bash \
-	--volume=/data/.docker/flentocker/data:/data \
-	--name flent \
-	flent
-```
-Note: volume is used for storing plots from tests
-
-
 ## Usage
-### Running flent inside docker
+
+### Running default test
+It will run flent with options:
+```
+$ flent   rrul \
+        -p all_scaled \
+        -l 60 \
+        -H netperf-eu.bufferbloat.net \
+        -o /data/RRUL_Test.png \
+        --figure-width=20 \
+        --figure-height=15 \
+        -z
+```
+Results and Test chart will be stored in <path_to_local_directory>
+
 ```sh
-flent 	<test_name> \ 
-	-p <plot_type> \ 
-	-l <duration_of_test> \ 
-	-H <netperf_server> \ 
-	-o <path_to_png_plot> \ 
-	--figure-width=<plot_width> \ 
-	--figure-height=<plot_height> \ 
-	-t <additional_title_on_plot> \ 
-	-z `#Plot scaled from zero`
+$ docker run --rm --volume=<path_to_local_directory>:/data flent
 ```
 Example:
 ```sh
-flent 	rrul \
-	-p all_scaled \
-	-l 60 \
-	-H netperf-eu.bufferbloat.net \
-	-o /data/RRUL_Test018.png \
-	--figure-width=20 \
-	--figure-height=15 \
-	-t SQM_300k_20k \
-	-z
+$ docker run --rm --volume=/data:/data flent
+```
+### Runing with different options
+```sh
+$ docker run --rm --volume=<path_to_local_directory>:/data flent <options>
 ```
 
-
+Example:
+```sh
+$ docker run --rm --volume=<path_to_local_directory>:/data flent \ 
+	rrul_torrent \
+        -p totals \
+        -l 30 \
+        -H netperf-eu.bufferbloat.net \
+        -o /data/RRUL_Test_Custom.png \
+        --figure-width=20 \
+        --figure-height=15 \
+        -z
+```
 
 ### Recommended test:
 - rrul
@@ -74,6 +65,11 @@ All available tests can be displayed with
 $ flent --list-tests
 ```
 
+
+##Help
+```sh
+$ docker run --rm --volume=<path_to_local_directory>:/data flent --help
+```
 
 
 ### Inspired by:

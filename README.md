@@ -15,7 +15,17 @@ $ docker  build -t flent -f Dockerfile .
 ## Usage
 
 ### Running default test
-It will run flent with options:
+```sh
+$ docker run --rm --volume=<path_to_local_directory>:/data flent
+```
+
+Example:
+```sh
+$ docker run --rm --volume=/data:/data flent
+```
+Results and Test chart will be stored in <path_to_local_directory>
+
+Above command will run flent with options:
 ```
 $ flent   rrul \
         -p all_scaled \
@@ -26,16 +36,10 @@ $ flent   rrul \
         --figure-height=15 \
         -z
 ```
-Results and Test chart will be stored in <path_to_local_directory>
 
-```sh
-$ docker run --rm --volume=<path_to_local_directory>:/data flent
-```
-Example:
-```sh
-$ docker run --rm --volume=/data:/data flent
-```
+
 ### Runing with different options
+Flent can be run also with custom options
 ```sh
 $ docker run --rm --volume=<path_to_local_directory>:/data flent <options>
 ```
@@ -53,7 +57,7 @@ $ docker run --rm --volume=<path_to_local_directory>:/data flent \
         -z
 ```
 
-### Recommended test:
+### Tests worth trying:
 - rrul
 - rrul_torrent
 - rtt_fair
@@ -66,7 +70,7 @@ $ flent --list-tests
 ```
 
 
-##Help
+## Help
 ```sh
 $ docker run --rm --volume=<path_to_local_directory>:/data flent --help
 ```
